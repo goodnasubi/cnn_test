@@ -1,101 +1,102 @@
 #from chainer import cuda, Variable, FunctionSet, optimizers
+import chainer
 from chainer import Link, Chain, ChainList
 import chainer.functions as F
 import chainer.links as L
 
-class CaiwaGo():
+class CaiwaGo(chainer.Chain):
     def __init__(self, train=True):
-        super(CaiwaGo,self).__init__(
-            conv0 = L.Convolution2D(17,256,3, pad=1),
-            conv1 = L.Convolution2D(256,256,3, pad=1),
-            conv2 = L.Convolution2D(256,256,3, pad=1),
-            conv3 = L.Convolution2D(256,256,3, pad=1),
-            conv4 = L.Convolution2D(256,256,3, pad=1),
-            conv5 = L.Convolution2D(256,256,3, pad=1),
-            conv6 = L.Convolution2D(256,256,3, pad=1),
-            conv7 = L.Convolution2D(256,256,3, pad=1),
-            conv8 = L.Convolution2D(256,256,3, pad=1),
-            conv9 = L.Convolution2D(256,256,3, pad=1),
-            conv10 = L.Convolution2D(256,256,3, pad=1),
-            conv11 = L.Convolution2D(256,256,3, pad=1),
-            conv12 = L.Convolution2D(256,256,3, pad=1),
-            conv13 = L.Convolution2D(256,256,3, pad=1),
-            conv14 = L.Convolution2D(256,256,3, pad=1),
-            conv15 = L.Convolution2D(256,256,3, pad=1),
-            conv16 = L.Convolution2D(256,256,3, pad=1),
-            conv17 = L.Convolution2D(256,256,3, pad=1),
-            conv18 = L.Convolution2D(256,256,3, pad=1),
-            conv19 = L.Convolution2D(256,256,3, pad=1),
-            conv20 = L.Convolution2D(256,256,3, pad=1),
-            conv21 = L.Convolution2D(256,256,3, pad=1),
-            conv22 = L.Convolution2D(256,256,3, pad=1),
-            conv23 = L.Convolution2D(256,256,3, pad=1),
-            conv24 = L.Convolution2D(256,256,3, pad=1),
-            conv25 = L.Convolution2D(256,256,3, pad=1),
-            conv26 = L.Convolution2D(256,256,3, pad=1),
-            conv27 = L.Convolution2D(256,256,3, pad=1),
-            conv28 = L.Convolution2D(256,256,3, pad=1),
-            conv29 = L.Convolution2D(256,256,3, pad=1),
-            conv30 = L.Convolution2D(256,256,3, pad=1),
-            conv31 = L.Convolution2D(256,256,3, pad=1),
-            conv32 = L.Convolution2D(256,256,3, pad=1),
-            conv33 = L.Convolution2D(256,256,3, pad=1),
-            conv34 = L.Convolution2D(256,256,3, pad=1),
-            conv35 = L.Convolution2D(256,256,3, pad=1),
-            conv36 = L.Convolution2D(256,256,3, pad=1),
-            conv37 = L.Convolution2D(256,256,3, pad=1),
-            conv38 = L.Convolution2D(256,256,3, pad=1),
+        super(CaiwaGo,self).__init__()
+        with self.init_scope():
+            self.conv0 = L.Convolution2D(17,256,3, pad=1)
+            self.conv1 = L.Convolution2D(256,256,3, pad=1)
+            self.conv2 = L.Convolution2D(256,256,3, pad=1)
+            self.conv3 = L.Convolution2D(256,256,3, pad=1)
+            self.conv4 = L.Convolution2D(256,256,3, pad=1)
+            self.conv5 = L.Convolution2D(256,256,3, pad=1)
+            self.conv6 = L.Convolution2D(256,256,3, pad=1)
+            self.conv7 = L.Convolution2D(256,256,3, pad=1)
+            self.conv8 = L.Convolution2D(256,256,3, pad=1)
+            self.conv9 = L.Convolution2D(256,256,3, pad=1)
+            self.conv10 = L.Convolution2D(256,256,3, pad=1)
+            self.conv11 = L.Convolution2D(256,256,3, pad=1)
+            self.conv12 = L.Convolution2D(256,256,3, pad=1)
+            self.conv13 = L.Convolution2D(256,256,3, pad=1)
+            self.conv14 = L.Convolution2D(256,256,3, pad=1)
+            self.conv15 = L.Convolution2D(256,256,3, pad=1)
+            self.conv16 = L.Convolution2D(256,256,3, pad=1)
+            self.conv17 = L.Convolution2D(256,256,3, pad=1)
+            self.conv18 = L.Convolution2D(256,256,3, pad=1)
+            self.conv19 = L.Convolution2D(256,256,3, pad=1)
+            self.conv20 = L.Convolution2D(256,256,3, pad=1)
+            self.conv21 = L.Convolution2D(256,256,3, pad=1)
+            self.conv22 = L.Convolution2D(256,256,3, pad=1)
+            self.conv23 = L.Convolution2D(256,256,3, pad=1)
+            self.conv24 = L.Convolution2D(256,256,3, pad=1)
+            self.conv25 = L.Convolution2D(256,256,3, pad=1)
+            self.conv26 = L.Convolution2D(256,256,3, pad=1)
+            self.conv27 = L.Convolution2D(256,256,3, pad=1)
+            self.conv28 = L.Convolution2D(256,256,3, pad=1)
+            self.conv29 = L.Convolution2D(256,256,3, pad=1)
+            self.conv30 = L.Convolution2D(256,256,3, pad=1)
+            self.conv31 = L.Convolution2D(256,256,3, pad=1)
+            self.conv32 = L.Convolution2D(256,256,3, pad=1)
+            self.conv33 = L.Convolution2D(256,256,3, pad=1)
+            self.conv34 = L.Convolution2D(256,256,3, pad=1)
+            self.conv35 = L.Convolution2D(256,256,3, pad=1)
+            self.conv36 = L.Convolution2D(256,256,3, pad=1)
+            self.conv37 = L.Convolution2D(256,256,3, pad=1)
+            self.conv38 = L.Convolution2D(256,256,3, pad=1)
 
-            bn0 = L.BatchNormalization(256),
-            bn1 = L.BatchNormalization(256),
-            bn2 = L.BatchNormalization(256),
-            bn3 = L.BatchNormalization(256),
-            bn4 = L.BatchNormalization(256),
-            bn5 = L.BatchNormalization(256),
-            bn6 = L.BatchNormalization(256),
-            bn7 = L.BatchNormalization(256),
-            bn8 = L.BatchNormalization(256),
-            bn9 = L.BatchNormalization(256),
-            bn10 = L.BatchNormalization(256),
-            bn11 = L.BatchNormalization(256),
-            bn12 = L.BatchNormalization(256),
-            bn13 = L.BatchNormalization(256),
-            bn14 = L.BatchNormalization(256),
-            bn15 = L.BatchNormalization(256),
-            bn16 = L.BatchNormalization(256),
-            bn17 = L.BatchNormalization(256),
-            bn18 = L.BatchNormalization(256),
-            bn19 = L.BatchNormalization(256),
-            bn20 = L.BatchNormalization(256),
-            bn21 = L.BatchNormalization(256),
-            bn22 = L.BatchNormalization(256),
-            bn23 = L.BatchNormalization(256),
-            bn24 = L.BatchNormalization(256),
-            bn25 = L.BatchNormalization(256),
-            bn26 = L.BatchNormalization(256),
-            bn27 = L.BatchNormalization(256),
-            bn28 = L.BatchNormalization(256),
-            bn29 = L.BatchNormalization(256),
-            bn30 = L.BatchNormalization(256),
-            bn31 = L.BatchNormalization(256),
-            bn32 = L.BatchNormalization(256),
-            bn33 = L.BatchNormalization(256),
-            bn34 = L.BatchNormalization(256),
-            bn35 = L.BatchNormalization(256),
-            bn36 = L.BatchNormalization(256),
-            bn37 = L.BatchNormalization(256),
-            bn38 = L.BatchNormalization(256),
+            self.bn0 = L.BatchNormalization(256)
+            self.bn1 = L.BatchNormalization(256)
+            self.bn2 = L.BatchNormalization(256)
+            self.bn3 = L.BatchNormalization(256)
+            self.bn4 = L.BatchNormalization(256)
+            self.bn5 = L.BatchNormalization(256)
+            self.bn6 = L.BatchNormalization(256)
+            self.bn7 = L.BatchNormalization(256)
+            self.bn8 = L.BatchNormalization(256)
+            self.bn9 = L.BatchNormalization(256)
+            self.bn10 = L.BatchNormalization(256)
+            self.bn11 = L.BatchNormalization(256)
+            self.bn12 = L.BatchNormalization(256)
+            self.bn13 = L.BatchNormalization(256)
+            self.bn14 = L.BatchNormalization(256)
+            self.bn15 = L.BatchNormalization(256)
+            self.bn16 = L.BatchNormalization(256)
+            self.bn17 = L.BatchNormalization(256)
+            self.bn18 = L.BatchNormalization(256)
+            self.bn19 = L.BatchNormalization(256)
+            self.bn20 = L.BatchNormalization(256)
+            self.bn21 = L.BatchNormalization(256)
+            self.bn22 = L.BatchNormalization(256)
+            self.bn23 = L.BatchNormalization(256)
+            self.bn24 = L.BatchNormalization(256)
+            self.bn25 = L.BatchNormalization(256)
+            self.bn26 = L.BatchNormalization(256)
+            self.bn27 = L.BatchNormalization(256)
+            self.bn28 = L.BatchNormalization(256)
+            self.bn29 = L.BatchNormalization(256)
+            self.bn30 = L.BatchNormalization(256)
+            self.bn31 = L.BatchNormalization(256)
+            self.bn32 = L.BatchNormalization(256)
+            self.bn33 = L.BatchNormalization(256)
+            self.bn34 = L.BatchNormalization(256)
+            self.bn35 = L.BatchNormalization(256)
+            self.bn36 = L.BatchNormalization(256)
+            self.bn37 = L.BatchNormalization(256)
+            self.bn38 = L.BatchNormalization(256)
 
-            conv_p1 = L.Convolution2D(256,2,1),
-            bn_p1 = L.BatchNormalization(2),
-            fc_p2 = L.Linear(19*19*2, 19*19),
+            self.conv_p1 = L.Convolution2D(256,2,1)
+            self.bn_p1 = L.BatchNormalization(2)
+            self.fc_p2 = L.Linear(19*19*2, 19*19)
 
-            conv_v1 = L.Convolution2D(256,1,1),
-            bn_v1 = L.BatchNormalization(1),
-            fc_v2 = L.Linear(19*19, 256),
-            fc_v3 = L.Linear(256, 1),
-
-        )
+            self.conv_v1 = L.Convolution2D(256,1,1)
+            self.bn_v1 = L.BatchNormalization(1)
+            self.fc_v2 = L.Linear(19*19, 256)
+            self.fc_v3 = L.Linear(256, 1)
+        
         
     def __call__(self, x):
         h0 = F.relu(self.bn0(self.conv0(x)))
@@ -170,5 +171,9 @@ class CaiwaGo():
         out_v = F.tanh(self.fc_v3(h_v2))
 
         return out_p, out_v
-        
 
+
+model = CaiwaGo()
+
+x = [[1,2],[3,4],[56]]
+model.__call__(x)
