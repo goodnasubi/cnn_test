@@ -4,6 +4,8 @@ from chainer import Link, Chain, ChainList
 import chainer.functions as F
 import chainer.links as L
 
+import numpy as np
+
 class CaiwaGo(chainer.Chain):
     def __init__(self, train=True):
         super(CaiwaGo,self).__init__()
@@ -175,5 +177,5 @@ class CaiwaGo(chainer.Chain):
 
 model = CaiwaGo()
 
-x = [[1,2],[3,4],[56]]
+x = np.array([[1,2],[3,4],[5,6]], dtype=float)
 model.__call__(x)
